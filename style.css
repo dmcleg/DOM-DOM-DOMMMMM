@@ -1,7 +1,15 @@
-div.square {
+ div.square {
     background-color:  black;
     width: 100px;
     height: 100px;
     margin: 5px;
-    display:inline-block;
+    color: white;
+    font-size: 3em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
   }
+  #square-container {
+    
+    flex-wrap: wrap;
+}

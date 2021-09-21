@@ -6,16 +6,59 @@ document.addEventListener("DOMContentLoaded", function () {
     button.appendChild(btnText);
     document.body.appendChild(button);
 
+    const squareContainer = document.createElement("div");
+    squareContainer.id = "square-container";
+    document.body.appendChild(squareContainer);
 
+    let clicks = 0;
 
 
     button.addEventListener("click", function () {
         let div = document.createElement('div');
-        let clicks = 0;
-        document.getElementsByTagName('button').value = ++clicks;
+
+
+        clicks++
+        div.id = clicks;
+
         div.className = "square";
+        //visible text
+        div.addEventListener("mouseover", function () {
+            div.textContent = div.id;
+        });
+
+        div.addEventListener("mouseout", function () {
+            div.textContent = "";
+        })
+        //color changing
+        div.addEventListener("click", function () {
+            div.style.backgroundColor = getRandomColor()
+        })
+        //removing blocks  
+        div.addEventListener("dblclick", function () {
+            if (div.id % 2 == 0) {
+                if (div.nextSibling) {
+                    div.nextSibling.remove()
+                } else {
+                    alert("Doesn't work!")
+                }
+            } else {
+                if (div.previousSibling) {
+                    div.previousSibling.remove()
+                } else {
+                    alert("Doesn't work!")
+                }
+            }
+        })
+
         document.body.appendChild(div);
-        div.setAttribute('id', clicks);
-        console.log("click!");
     })
 })
+//random color generator
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
